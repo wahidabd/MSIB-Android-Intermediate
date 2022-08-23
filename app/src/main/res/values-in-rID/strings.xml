@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dicoding Stories</string>
+    <string name="password_length">Password haarus lebih dari 6 karakter</string>
+    <string name="dicoding_stories">Dicoding Stories</string>
+    <string name="image_description">Image description</string>
+    <string name="login">Masuk</string>
+    <string name="email">Email</string>
+    <string name="don_at_have_account">Belum mempunyai akun?</string>
+    <string name="register_lower">daftar</string>
+    <string name="register">Daftar</string>
+    <string name="already_have_an_account">Sudah punya akun?</string>
+    <string name="login_lower">masuk</string>
+    <string name="name">Nama</string>
+    <string name="back">Kembali</string>
+    <string name="add_story">Buat Cerita</string>
+    <string name="upload">Simpan</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="image">Gambar</string>
+    <string name="description">Deskripsi</string>
+    <string name="date_second">detik yang lalu</string>
+    <string name="date_minute">menit yang lalu</string>
+    <string name="date_hour">jam yang lalu</string>
+    <string name="date_day">hari yang lalu</string>
+    <string name="date_week">minggu yang lalu</string>
+    <string name="date_month">bulan yang lalu</string>
+    <string name="date_year">tahun yang lalu</string>
+    <string name="text_not_null">tidak boleh kosong</string>
+    <string name="home">Beranda</string>
+    <string name="setting">Pengaturan</string>
+    <string name="select_language">Pilih bahasa</string>
+    <string name="logout">Keluar</string>
+    <string name="dark_mode">Mode gelap</string>
+</resources>

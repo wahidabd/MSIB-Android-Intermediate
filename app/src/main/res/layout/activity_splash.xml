@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    android:id="@+id/motion"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    app:layoutDescription="@xml/activity_splash_scene2"
+    tools:context=".view.page.splash.SplashActivity">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:contentDescription="@string/image_description"
+        android:src="@drawable/logo"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="286dp" />
+
+
+    <TextView
+        android:id="@+id/tv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/dicoding_stories"
+        android:paddingBottom="8dp"
+        android:textColor="@color/color_text"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="693dp" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.page.auth.LoginFragment">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/logo"
+        android:alpha="0"
+        android:layout_marginTop="110dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image_description"/>
+
+    <TextView
+        android:id="@+id/tv_text_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/login"
+        android:textColor="@color/color_text_auth"
+        android:textSize="32sp"
+        android:alpha="0"
+        android:layout_marginTop="52dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+    <LinearLayout
+        android:id="@+id/linear_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/bg_edt_stroke_auth"
+        android:layout_marginTop="16dp"
+        android:alpha="0"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text_login">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="10dp"
+            android:src="@drawable/ic_email"
+            app:tint="@color/color_text_auth"
+            android:contentDescription="@string/image_description"/>
+
+        <com.wahidabd.dicodingstories.view.components.MyEmailEdittext
+            android:id="@+id/ed_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/email"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/color_text"
+            android:inputType="textEmailAddress"
+            android:layout_marginEnd="12dp"
+            android:background="@null"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="14dp"
+        android:alpha="0"
+        android:background="@drawable/bg_edt_stroke_auth"
+        app:layout_constraintEnd_toEndOf="@+id/linear_email"
+        app:layout_constraintStart_toStartOf="@+id/linear_email"
+        app:layout_constraintTop_toBottomOf="@+id/linear_email">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="10dp"
+            android:contentDescription="@string/image_description"
+            android:src="@drawable/ic_lock"
+            app:tint="@color/color_text_auth" />
+
+        <com.wahidabd.dicodingstories.view.components.MyPasswordEdittext
+            android:id="@+id/ed_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14sp"
+            android:textColor="@color/color_text_auth"
+            android:layout_gravity="center"
+            android:inputType="textPassword"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:alpha="0"
+        app:layout_constraintEnd_toEndOf="@+id/linear_password"
+        app:layout_constraintTop_toBottomOf="@+id/linear_password">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/don_at_have_account"
+            android:textColor="@color/color_text"
+            android:textSize="11sp" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_to_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/register_lower"
+            android:textColor="@color/color_text_auth"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_bg_button"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:paddingHorizontal="99dp"
+        android:text="@string/login"
+        android:alpha="0"
+        android:enabled="false"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_register" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

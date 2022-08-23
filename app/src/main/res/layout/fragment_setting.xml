@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".view.page.setting.SettingFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linear_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:paddingVertical="6dp"
+        android:background="@drawable/ripple_background">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/select_language"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            tools:text="English"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"
+            app:drawableEndCompat="@drawable/ic_keyboard_arrow_right"
+            app:drawableTint="@color/color_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="6dp"
+        android:paddingVertical="6dp"
+        android:background="@drawable/ripple_background">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/name"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            tools:text="Name"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/color_text"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="6dp"
+        android:paddingVertical="6dp"
+        android:background="@drawable/ripple_background">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/email"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            tools:text="Email"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/color_text"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="6dp"
+        android:paddingVertical="6dp"
+        android:background="@drawable/ripple_background">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dark_mode"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"/>
+
+        <Switch
+            android:id="@+id/dark_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="34dp"
+        android:paddingVertical="6dp"
+        android:elevation="4dp"
+        android:background="@drawable/ripple_background">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/logout"
+            android:layout_marginStart="12dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_logout"
+            android:layout_marginEnd="12dp"
+            app:tint="@color/color_text"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

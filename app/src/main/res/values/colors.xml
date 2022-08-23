@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#1363DF</color>
+    <color name="blue_wood">#2D3E50</color>
+    <color name="sky_blue">#47B5FF</color>
+    <color name="light_blue">#DFF6FF</color>
+    <color name="raisin_black">#06283D</color>
+    <color name="raisin_black_light">#B3134B6E</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#DADADA</color>
+
+    <color name="background">#FFFFFFFF</color>
+    <color name="color_main">#1363DF</color>
+    <color name="color_text">#000000</color>
+    <color name="color_text_auth">#1363DF</color>
+</resources>
