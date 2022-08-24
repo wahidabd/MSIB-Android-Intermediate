@@ -37,4 +37,5 @@
     <string name="image_home_top">Gambar beranda</string>
     <string name="image_logo">Gambar logo</string>
     <string name="icon_logout">Ikon keluar</string>
+    <string name="retry">Coba lagi</string>
 </resources>

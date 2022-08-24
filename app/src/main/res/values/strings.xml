@@ -36,4 +36,5 @@
     <string name="image_home_top">Image home top</string>
     <string name="image_logo">Image logo</string>
     <string name="icon_logout">Icon logout</string>
+    <string name="retry">Retry</string>
 </resources>

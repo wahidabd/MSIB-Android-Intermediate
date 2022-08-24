@@ -3,12 +3,9 @@ package com.wahidabd.dicodingstories.view.page.home
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.wahidabd.dicodingstories.R
 import com.wahidabd.dicodingstories.data.model.PostModel
 import com.wahidabd.dicodingstories.databinding.ItemPostBinding
 import com.wahidabd.dicodingstories.utils.convertDate
@@ -44,12 +41,9 @@ class PostPagingAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = getItem(position)
         if (currentItem != null) holder.bind(currentItem, listener)
-        holder.container.animation =
-            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.fall_down)
     }
 
     inner class ViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
-        val container = binding.viewRoot
         fun bind(data: PostModel, listener: ((PostModel) -> Unit)?) {
             with(binding) {
                 imgPicture.setImage(data.photoUrl)

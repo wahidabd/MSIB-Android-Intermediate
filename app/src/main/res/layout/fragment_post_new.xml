@@ -106,7 +106,7 @@
             android:textSize="14sp"
             android:inputType="textMultiLine"
             android:layout_margin="6dp"
-            android:textColor="@color/black"
+            android:textColor="@color/color_text"
             android:importantForAutofill="no" />
 
     </LinearLayout>
