@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/image_description"/>
+        android:contentDescription="@string/image_logo"/>
 
     <TextView
         android:id="@+id/tv_text_register"
@@ -51,7 +51,7 @@
             android:layout_marginVertical="10dp"
             android:src="@drawable/ic_person"
             app:tint="@color/color_text_auth"
-            android:contentDescription="@string/image_description"/>
+            android:contentDescription="@string/name"/>
 
         <EditText
             android:id="@+id/ed_name"
@@ -89,7 +89,7 @@
             android:layout_marginVertical="10dp"
             android:src="@drawable/ic_email"
             app:tint="@color/color_text_auth"
-            android:contentDescription="@string/image_description"/>
+            android:contentDescription="@string/email"/>
 
         <com.wahidabd.dicodingstories.view.components.MyEmailEdittext
             android:id="@+id/ed_email"
@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="10dp"
-            android:contentDescription="@string/image_description"
+            android:contentDescription="@string/password"
             android:src="@drawable/ic_lock"
             app:tint="@color/color_text_auth" />
 

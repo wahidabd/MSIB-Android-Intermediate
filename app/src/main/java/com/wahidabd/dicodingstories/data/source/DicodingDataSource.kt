@@ -10,7 +10,6 @@ import com.wahidabd.dicodingstories.data.request.PostRequest
 import com.wahidabd.dicodingstories.data.request.RegisterRequest
 import com.wahidabd.dicodingstories.data.response.GenericResponse
 import com.wahidabd.dicodingstories.data.response.LoginResponse
-import com.wahidabd.dicodingstories.data.response.PostResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -40,13 +39,6 @@ class DicodingDataSource @Inject constructor(
         emit(Resource.loading(null))
 
         val res = safeCall.enqueue(req, converter::converterGenericError, userService::login)
-        emit(res)
-    }.flowOn(Dispatchers.IO)
-
-    fun getStories(): Flow<Resource<PostResponse>> = flow {
-        emit(Resource.loading(null))
-
-        val res = safeCall.enqueue(converter::converterGenericError, postService::getList)
         emit(res)
     }.flowOn(Dispatchers.IO)
 

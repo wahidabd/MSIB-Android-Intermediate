@@ -12,4 +12,6 @@ object Constants {
     const val REQUEST_CODE_PERMISSIONS = 10
 
     const val SPLASH_DURATION: Long = 1500
+
+    const val STARTING_PAGE_INDEX = 1
 }

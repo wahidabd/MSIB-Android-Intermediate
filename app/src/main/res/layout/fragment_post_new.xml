@@ -21,7 +21,7 @@
             android:padding="4dp"
             android:src="@drawable/ic_arrow_back"
             android:background="@drawable/ripple_oval_primary_white"
-            android:contentDescription="@string/image_description"/>
+            android:contentDescription="@string/back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_baseline_image_24"
             android:background="@color/gray"
-            android:contentDescription="@string/image_description"/>
+            android:contentDescription="@string/image"/>
 
     </androidx.cardview.widget.CardView>
 
