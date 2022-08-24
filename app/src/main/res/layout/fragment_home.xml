@@ -11,7 +11,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="142dp"
-        android:contentDescription="@string/image_description"
+        android:contentDescription="@string/home"
         android:src="@drawable/ic_view_top"
         app:tint="@color/color_main" />
 
@@ -22,7 +22,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/logo"
-        android:contentDescription="@string/image_description"/>
+        android:contentDescription="@string/image_logo"/>
 
     <TextView
         android:id="@+id/tv_app_name"

@@ -2,9 +2,10 @@
     <string name="app_name">Dicoding Stories</string>
     <string name="password_length">Password length must be more than 6 characters</string>
     <string name="dicoding_stories">Dicoding Stories</string>
-    <string name="image_description">Image description</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="invalid_email_address">Invalid email address</string>
     <string name="don_at_have_account">Don\'t have an account?</string>
     <string name="register_lower">register</string>
     <string name="register">Register</string>
@@ -31,4 +32,8 @@
     <string name="select_language">Select language</string>
     <string name="logout">Logout</string>
     <string name="dark_mode">Dark mode</string>
+
+    <string name="image_home_top">Image home top</string>
+    <string name="image_logo">Image logo</string>
+    <string name="icon_logout">Icon logout</string>
 </resources>

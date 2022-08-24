@@ -3,9 +3,10 @@
     <string name="app_name">Dicoding Stories</string>
     <string name="password_length">Password haarus lebih dari 6 karakter</string>
     <string name="dicoding_stories">Dicoding Stories</string>
-    <string name="image_description">Image description</string>
     <string name="login">Masuk</string>
     <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="invalid_email_address">Email tidak valid</string>
     <string name="don_at_have_account">Belum mempunyai akun?</string>
     <string name="register_lower">daftar</string>
     <string name="register">Daftar</string>
@@ -32,4 +33,8 @@
     <string name="select_language">Pilih bahasa</string>
     <string name="logout">Keluar</string>
     <string name="dark_mode">Mode gelap</string>
+
+    <string name="image_home_top">Gambar beranda</string>
+    <string name="image_logo">Gambar logo</string>
+    <string name="icon_logout">Ikon keluar</string>
 </resources>
