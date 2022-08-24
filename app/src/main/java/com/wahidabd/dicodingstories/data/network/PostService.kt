@@ -5,15 +5,15 @@ import com.wahidabd.dicodingstories.data.response.PostResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 interface PostService {
 
     @GET("stories")
-    suspend fun getList(): Response<PostResponse>
+    suspend fun getList(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): PostResponse
 
     @Multipart
     @POST("stories")

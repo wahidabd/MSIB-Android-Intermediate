@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             tools:background="@color/blue_wood"
-            android:contentDescription="@string/image_description"/>
+            android:contentDescription="@string/image"/>
 
     </androidx.cardview.widget.CardView>
 
