@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.wahidabd.dicodingstories.databinding.ActivitySplashBinding
+import com.wahidabd.dicodingstories.utils.Constants
 import com.wahidabd.dicodingstories.utils.MySharedPreference
 import com.wahidabd.dicodingstories.view.MainActivity
 import com.wahidabd.dicodingstories.view.page.auth.AuthActivity
@@ -33,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this, AuthActivity::class.java))
                 finish()
             }
-        }, 1500)
+        }, Constants.SPLASH_DURATION)
 
     }
 }

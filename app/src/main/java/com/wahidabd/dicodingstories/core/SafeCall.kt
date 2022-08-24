@@ -9,64 +9,76 @@ import java.net.SocketTimeoutException
 
 class SafeCall {
 
-    suspend fun <T> enqueue(converter: (ResponseBody) -> GenericResponse?, call: suspend () -> Response<T>): Resource<T> =
+    suspend fun <T> enqueue(
+        converter: (ResponseBody) -> GenericResponse?,
+        call: suspend () -> Response<T>
+    ): Resource<T> =
         try {
             val res = call()
             val body = res.body()
             val errorBody = res.errorBody()
 
-            if (res.isSuccessful && body != null){
+            if (res.isSuccessful && body != null) {
                 Resource.success(body)
-            }else if(errorBody != null){
+            } else if (errorBody != null) {
                 val parsedError = converter(errorBody)
                 Resource.error(parsedError?.message.toString(), null)
-            }else{
+            } else {
                 Resource.error(UNKNOWN_ERROR, null)
             }
-        }catch (e: Exception){
-            when(e){
+        } catch (e: Exception) {
+            when (e) {
                 is SocketTimeoutException -> Resource.error(TIMEOUT_ERROR, null)
                 else -> Resource.error(UNKNOWN_ERROR, null)
             }
         }
 
-    suspend fun <T, R> enqueue(req: T, converter: (ResponseBody) -> GenericResponse?, call: suspend (T) -> Response<R>): Resource<R> =
+    suspend fun <T, R> enqueue(
+        req: T,
+        converter: (ResponseBody) -> GenericResponse?,
+        call: suspend (T) -> Response<R>
+    ): Resource<R> =
         try {
             val res = call(req)
             val body = res.body()
             val errorBody = res.errorBody()
 
-            if (res.isSuccessful && body != null){
+            if (res.isSuccessful && body != null) {
                 Resource.success(body)
-            }else if(errorBody != null){
+            } else if (errorBody != null) {
                 val parsedError = converter(errorBody)
                 Resource.error(parsedError?.message.toString(), null)
-            }else{
+            } else {
                 Resource.error(UNKNOWN_ERROR, null)
             }
-        }catch (e: Exception){
-            when(e){
+        } catch (e: Exception) {
+            when (e) {
                 is SocketTimeoutException -> Resource.error(TIMEOUT_ERROR, null)
                 else -> Resource.error(UNKNOWN_ERROR, null)
             }
         }
 
-    suspend fun <T, U, R> enqueue(req1: T, req2: U, converter: (ResponseBody) -> GenericResponse?, call: suspend (T, U) -> Response<R>): Resource<R> =
+    suspend fun <T, U, R> enqueue(
+        req1: T,
+        req2: U,
+        converter: (ResponseBody) -> GenericResponse?,
+        call: suspend (T, U) -> Response<R>
+    ): Resource<R> =
         try {
             val res = call(req1, req2)
             val body = res.body()
             val errorBody = res.errorBody()
 
-            if (res.isSuccessful && body != null){
+            if (res.isSuccessful && body != null) {
                 Resource.success(body)
-            }else if(errorBody != null){
+            } else if (errorBody != null) {
                 val parsedError = converter(errorBody)
                 Resource.error(parsedError?.message.toString(), null)
-            }else{
+            } else {
                 Resource.error(UNKNOWN_ERROR, null)
             }
-        }catch (e: Exception){
-            when(e){
+        } catch (e: Exception) {
+            when (e) {
                 is SocketTimeoutException -> Resource.error(TIMEOUT_ERROR, null)
                 else -> Resource.error(UNKNOWN_ERROR, null)
             }

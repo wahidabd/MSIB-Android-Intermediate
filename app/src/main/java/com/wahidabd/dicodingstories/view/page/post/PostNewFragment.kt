@@ -1,6 +1,5 @@
 package com.wahidabd.dicodingstories.view.page.post
 
-import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
@@ -87,8 +86,8 @@ class PostNewFragment : Fragment() {
         val desc = binding.edtDescription.texTrim()
         val request = myFile?.let { PostRequest(desc, it) }
 
-        if (desc.isEmpty()) view?.mySnackBar("${R.string.description} ${R.string.text_not_null}")
-        else if (myFile == null) view?.mySnackBar("${R.string.image} ${R.string.text_not_null}")
+        if (desc.isEmpty()) view?.mySnackBar("${getString(R.string.description)} ${getString(R.string.text_not_null)}")
+        else if (myFile == null) view?.mySnackBar("${getString(R.string.image)} ${getString(R.string.text_not_null)}")
         else{
             if (request != null) observableViewModel(request)
         }

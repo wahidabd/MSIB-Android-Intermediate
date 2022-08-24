@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.doAfterTextChanged
+import com.wahidabd.dicodingstories.R
 
 class MyEmailEdittext : AppCompatEditText {
 
@@ -14,11 +15,11 @@ class MyEmailEdittext : AppCompatEditText {
 
     private fun init(){
         background = null
-        hint = "Email"
+        hint = resources.getString(R.string.email)
 
         doAfterTextChanged {
             if (!Patterns.EMAIL_ADDRESS.matcher(it.toString()).matches()){
-                error = "Invalid email address"
+                error = resources.getString(R.string.invalid_email_address)
             }
         }
 
