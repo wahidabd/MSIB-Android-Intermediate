@@ -37,4 +37,13 @@
     <string name="image_logo">Image logo</string>
     <string name="icon_logout">Icon logout</string>
     <string name="retry">Retry</string>
+    <string name="maps">Maps</string>
+    <string name="icon_maps_type">Icon maps type</string>
+    <string name="maps_type">Maps Type</string>
+    <string name="normal">Normal</string>
+    <string name="sattelite">Sattelite</string>
+    <string name="terrain">Terrain</string>
+    <string name="maps_style">Maps Style</string>
+    <string name="night">Night</string>
+    <string name="silver">Silver</string>
 </resources>

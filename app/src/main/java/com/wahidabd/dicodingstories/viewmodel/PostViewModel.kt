@@ -12,6 +12,7 @@ import com.wahidabd.dicodingstories.data.repository.DicodingRepository
 import com.wahidabd.dicodingstories.data.repository.PostMediatorRepository
 import com.wahidabd.dicodingstories.data.request.PostRequest
 import com.wahidabd.dicodingstories.data.response.GenericResponse
+import com.wahidabd.dicodingstories.data.response.PostResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -23,6 +24,9 @@ class PostViewModel @Inject constructor(
 
     fun getList(): LiveData<PagingData<PostModel>> =
         repoMediator.getListPost().asLiveData().cachedIn(viewModelScope)
+
+    fun getPosLocation(): LiveData<Resource<PostResponse>> =
+        repo.getPostLocation().asLiveData()
 
     fun postStory(request: PostRequest): LiveData<Resource<GenericResponse>> =
         repo.postStory(request).asLiveData()

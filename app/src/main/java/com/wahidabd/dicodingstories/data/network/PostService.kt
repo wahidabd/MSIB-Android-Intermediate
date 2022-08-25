@@ -15,6 +15,11 @@ interface PostService {
         @Query("size") size: Int
     ): PostResponse
 
+    @GET("stories")
+    suspend fun getPostLocation(
+        @Query("location") location: Int
+    ): Response<PostResponse>
+
     @Multipart
     @POST("stories")
     suspend fun postStory(

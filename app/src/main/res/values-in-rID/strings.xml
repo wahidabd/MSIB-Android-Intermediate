@@ -38,4 +38,13 @@
     <string name="image_logo">Gambar logo</string>
     <string name="icon_logout">Ikon keluar</string>
     <string name="retry">Coba lagi</string>
+    <string name="maps">Peta</string>
+    <string name="icon_maps_type">Ikon tipe peta</string>
+    <string name="maps_type">Tipe Peta</string>
+    <string name="normal">Normal</string>
+    <string name="sattelite">Satelit</string>
+    <string name="terrain">Medan</string>
+    <string name="maps_style">Gaya Peta</string>
+    <string name="night">Malam</string>
+    <string name="silver">Abu-abu</string>
 </resources>
