@@ -1,5 +1,6 @@
 package com.wahidabd.dicodingstories.view.page.post
 
+import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
@@ -19,10 +20,13 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.wahidabd.dicodingstories.R
 import com.wahidabd.dicodingstories.core.Status
 import com.wahidabd.dicodingstories.data.request.PostRequest
 import com.wahidabd.dicodingstories.databinding.FragmentPostNewBinding
+import com.wahidabd.dicodingstories.utils.Constants.LOCATION_PERMISSION
 import com.wahidabd.dicodingstories.utils.Constants.REQUEST_CODE_PERMISSIONS
 import com.wahidabd.dicodingstories.utils.Constants.REQUIRED_PERMISSIONS
 import com.wahidabd.dicodingstories.utils.createCustomTempFile
@@ -44,7 +48,12 @@ class PostNewFragment : Fragment() {
     private val viewModel: PostViewModel by viewModels()
     private var myFile: File? = null
 
-    @Inject lateinit var loading: LottieLoading
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var lat: Float? = null
+    private var lon: Float? = null
+
+    @Inject
+    lateinit var loading: LottieLoading
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -52,8 +61,8 @@ class PostNewFragment : Fragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS){
-            if (!allPermissionsGranted()){
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (!allPermissionsGranted()) {
                 view?.mySnackBar("Not getting permission!")
                 requireActivity().finish()
             }
@@ -64,7 +73,11 @@ class PostNewFragment : Fragment() {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentPostNewBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -72,30 +85,64 @@ class PostNewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!allPermissionsGranted()){
-            ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+        if (!allPermissionsGranted()) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                REQUIRED_PERMISSIONS,
+                REQUEST_CODE_PERMISSIONS
+            )
+        }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        binding.shareLocation.setOnCheckedChangeListener { _, checked ->
+            if (checked) {
+                launcherLocationPermission.launch(LOCATION_PERMISSION)
+            }else{
+                lat = null
+                lon = null
+            }
         }
 
         binding.imBack.setOnClickListener { findNavController().navigateUp() }
-        binding.btnCamera.setOnClickListener {takePhoto()}
+        binding.btnCamera.setOnClickListener { takePhoto() }
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnUpload.setOnClickListener { sendRequest() }
     }
 
-    private fun sendRequest(){
+    private fun sendRequest() {
         val desc = binding.edtDescription.texTrim()
-        val request = myFile?.let { PostRequest(desc, it) }
+        val request = PostRequest(desc, lat = lat, lon = lon)
 
         if (desc.isEmpty()) view?.mySnackBar("${getString(R.string.description)} ${getString(R.string.text_not_null)}")
         else if (myFile == null) view?.mySnackBar("${getString(R.string.image)} ${getString(R.string.text_not_null)}")
-        else{
-            if (request != null) observableViewModel(request)
+        else {
+            myFile?.let { observableViewModel(request, it) }
         }
     }
 
-    private fun observableViewModel(request: PostRequest) {
-        viewModel.postStory(request).observe(viewLifecycleOwner){res ->
-            when(res.status){
+    private fun checkPermission(permission: String): Boolean =
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun getMyLastLocation() {
+        if (checkPermission(LOCATION_PERMISSION[0]) && checkPermission(LOCATION_PERMISSION[1])) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null){
+                    lat = location.latitude.toFloat()
+                    lon = location.longitude.toFloat()
+                }
+            }
+        }else{
+            launcherLocationPermission.launch(LOCATION_PERMISSION)
+        }
+    }
+
+    private fun observableViewModel(request: PostRequest, file: File) {
+        viewModel.postStory(request, file).observe(viewLifecycleOwner) { res ->
+            when (res.status) {
                 Status.LOADING -> loading.start(requireContext())
                 Status.ERROR -> {
                     loading.stop()
@@ -110,7 +157,7 @@ class PostNewFragment : Fragment() {
         }
     }
 
-    private fun takePhoto(){
+    private fun takePhoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.resolveActivity(requireContext().packageManager)
 
@@ -124,7 +171,7 @@ class PostNewFragment : Fragment() {
         }
     }
 
-    private fun startGallery(){
+    private fun startGallery() {
         val intent = Intent()
         intent.action = ACTION_GET_CONTENT
         intent.type = "image/*"
@@ -135,8 +182,8 @@ class PostNewFragment : Fragment() {
     private lateinit var currentPhotoPath: String
     private val launcherIntentCamera = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){
-        if (it.resultCode == RESULT_OK){
+    ) {
+        if (it.resultCode == RESULT_OK) {
             val myFile = File(currentPhotoPath)
             this.myFile = myFile
 
@@ -147,8 +194,8 @@ class PostNewFragment : Fragment() {
     }
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){
-        if (it.resultCode == RESULT_OK){
+    ) {
+        if (it.resultCode == RESULT_OK) {
             val selectedImg: Uri = it.data?.data as Uri
             val myFile = uriToFile(selectedImg, requireContext())
             this.myFile = myFile
@@ -156,5 +203,18 @@ class PostNewFragment : Fragment() {
             binding.imgPicture.scaleType = ImageView.ScaleType.CENTER_CROP
         }
     }
+
+    private var launcherLocationPermission =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
+            when {
+                permission[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> getMyLastLocation()
+                permission[Manifest.permission.ACCESS_COARSE_LOCATION]
+                    ?: false -> getMyLastLocation()
+                else -> {
+                    binding.shareLocation.isChecked = false
+                    binding.shareLocation.isEnabled = false
+                }
+            }
+        }
 
 }

@@ -9,6 +9,7 @@ object Constants {
     const val THEME_SETTING = "theme_settings"
 
     val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+    val LOCATION_PERMISSION = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     const val REQUEST_CODE_PERMISSIONS = 10
 
     const val SPLASH_DURATION: Long = 1500

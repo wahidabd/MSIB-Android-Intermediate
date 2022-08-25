@@ -1,8 +1,7 @@
 package com.wahidabd.dicodingstories.data.request
 
-import java.io.File
-
 data class PostRequest(
     val description: String,
-    val file: File
+    val lat: Float? = null,
+    val lon: Float? = null
 )

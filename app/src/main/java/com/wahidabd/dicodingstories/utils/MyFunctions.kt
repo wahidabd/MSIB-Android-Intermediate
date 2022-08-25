@@ -3,13 +3,18 @@ package com.wahidabd.dicodingstories.utils
 import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.net.Uri
 import android.os.Environment
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.material.snackbar.Snackbar
 import com.wahidabd.dicodingstories.R
 import java.io.File
@@ -80,3 +85,11 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
 
     return myFile
 }
+
+fun bitmapFromVector(context: Context, resId: Int): BitmapDescriptor? =
+    ContextCompat.getDrawable(context, resId)?.run {
+        setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+        val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+        draw(Canvas(bitmap))
+        BitmapDescriptorFactory.fromBitmap(bitmap)
+    }

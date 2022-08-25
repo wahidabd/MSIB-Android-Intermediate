@@ -9,8 +9,8 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wahidabd.dicodingstories.R
 import com.wahidabd.dicodingstories.databinding.BottomMapsStyleBinding
-import com.wahidabd.dicodingstories.utils.MapStyle
-import com.wahidabd.dicodingstories.utils.MapType.*
+import com.wahidabd.dicodingstories.core.MapStyle
+import com.wahidabd.dicodingstories.core.MapType.*
 import com.wahidabd.dicodingstories.viewmodel.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

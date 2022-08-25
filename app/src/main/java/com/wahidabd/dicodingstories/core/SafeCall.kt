@@ -84,4 +84,32 @@ class SafeCall {
             }
         }
 
+    suspend fun <T, U, S, V, R> enqueue(
+        req1: T,
+        req2: U,
+        req3: S,
+        req4: V,
+        converter: (ResponseBody) -> GenericResponse?,
+        call: suspend (T, U, S, V) -> Response<R>
+    ): Resource<R> =
+        try {
+            val res = call(req1, req2, req3, req4)
+            val body = res.body()
+            val errorBody = res.errorBody()
+
+            if (res.isSuccessful && body != null) {
+                Resource.success(body)
+            } else if (errorBody != null) {
+                val parsedError = converter(errorBody)
+                Resource.error(parsedError?.message.toString(), null)
+            } else {
+                Resource.error(UNKNOWN_ERROR, null)
+            }
+        } catch (e: Exception) {
+            when (e) {
+                is SocketTimeoutException -> Resource.error(TIMEOUT_ERROR, null)
+                else -> Resource.error(UNKNOWN_ERROR, null)
+            }
+        }
+
 }

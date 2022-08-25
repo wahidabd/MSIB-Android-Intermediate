@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.wahidabd.dicodingstories.utils.MapStyle
-import com.wahidabd.dicodingstories.utils.MapType
+import com.wahidabd.dicodingstories.core.MapStyle
+import com.wahidabd.dicodingstories.core.MapType
 import com.wahidabd.dicodingstories.utils.SettingPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

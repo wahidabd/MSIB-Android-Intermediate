@@ -27,18 +27,4 @@
         android:background="@drawable/ripple_oval_primary_white"
         android:contentDescription="@string/icon_maps_type"/>
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/sheet"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        style="?attr/bottomSheetStyle"-->
-<!--        android:visibility="gone"-->
-<!--        android:background="@drawable/bg_rectangle_top_round_white"-->
-<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">-->
-
-<!--        <include android:id="@+id/maps_style"-->
-<!--            layout="@layout/bottom_maps_style"/>-->
-
-<!--    </FrameLayout>-->
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
