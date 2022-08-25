@@ -12,7 +12,6 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahidabd.dicodingstories.databinding.FragmentHomeBinding
 import com.wahidabd.dicodingstories.utils.MySharedPreference
-import com.wahidabd.dicodingstories.utils.lottie.LottieLoading
 import com.wahidabd.dicodingstories.viewmodel.PostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -25,9 +24,6 @@ class HomeFragment : Fragment() {
 
     private val viewModel: PostViewModel by viewModels()
     private lateinit var mAdapter: PostPagingAdapter
-
-    @Inject
-    lateinit var loading: LottieLoading
 
     @Inject
     lateinit var pref: MySharedPreference
@@ -44,11 +40,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loading.start(requireContext())
         mAdapter = PostPagingAdapter(requireContext())
-
         binding.rvPosts.apply {
-            adapter = mAdapter
+            adapter = mAdapter.withLoadStateHeaderAndFooter(
+                footer = PostLoadStateAdapter { mAdapter.retry() },
+                header = PostLoadStateAdapter { mAdapter.retry() }
+            )
             layoutManager = LinearLayoutManager(requireContext())
         }
 
@@ -58,12 +55,23 @@ class HomeFragment : Fragment() {
         }
 
         observableViewModel()
+        loadState()
     }
 
     private fun observableViewModel() {
         viewModel.getList().observe(viewLifecycleOwner) { res ->
             mAdapter.submitData(lifecycle, res)
-            loading.stop()
+        }
+    }
+
+    private fun loadState() {
+        mAdapter.addLoadStateListener { loadState ->
+            binding.apply {
+                rvPosts.isVisible = loadState.source.refresh is LoadState.NotLoading
+                loading.isVisible = loadState.source.refresh is LoadState.Loading
+                rvPosts.isVisible =
+                    !(loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && mAdapter.itemCount < 1)
+            }
         }
     }
 }

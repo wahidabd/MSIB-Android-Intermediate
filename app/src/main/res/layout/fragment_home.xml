@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".view.page.home.HomeFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
     <ImageView
         android:id="@+id/view"
         android:layout_width="match_parent"

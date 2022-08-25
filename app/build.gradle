@@ -5,6 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 def propertiesFile = rootProject.file("api.properties")
@@ -79,7 +80,6 @@ dependencies {
     implementation "androidx.room:room-ktx:2.4.3"
     implementation "androidx.room:room-paging:2.4.3"
 
-
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
@@ -109,4 +109,11 @@ dependencies {
 
     // DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    // Logging
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Google MAPS
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 }
