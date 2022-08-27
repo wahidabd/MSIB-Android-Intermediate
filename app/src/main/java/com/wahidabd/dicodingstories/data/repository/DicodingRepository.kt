@@ -9,6 +9,7 @@ import com.wahidabd.dicodingstories.data.response.LoginResponse
 import com.wahidabd.dicodingstories.data.response.PostResponse
 import com.wahidabd.dicodingstories.data.source.DicodingDataSource
 import kotlinx.coroutines.flow.Flow
+import java.io.File
 import javax.inject.Inject
 
 class DicodingRepository @Inject constructor(private val data: DicodingDataSource) {
@@ -17,6 +18,6 @@ class DicodingRepository @Inject constructor(private val data: DicodingDataSourc
     fun login(req: LoginRequest): Flow<Resource<LoginResponse>> = data.login(req)
 
     fun getPostLocation(): Flow<Resource<PostResponse>> = data.getPostLocation()
-    fun postStory(request: PostRequest): Flow<Resource<GenericResponse>> = data.postStory(request)
+    fun postStory(request: PostRequest, file: File): Flow<Resource<GenericResponse>> = data.postStory(request, file)
 
 }

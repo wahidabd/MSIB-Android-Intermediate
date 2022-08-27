@@ -24,7 +24,9 @@ interface PostService {
     @POST("stories")
     suspend fun postStory(
         @Part("description") description: RequestBody,
-        @Part file: MultipartBody.Part
+        @Part file: MultipartBody.Part?,
+        @Part("lat") lat: Float? = null,
+        @Part("lon") lon: Float? = null
     ): Response<GenericResponse>
 
 }

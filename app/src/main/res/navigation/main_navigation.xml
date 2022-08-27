@@ -39,5 +39,9 @@
         android:id="@+id/mapsFragment"
         android:name="com.wahidabd.dicodingstories.view.page.maps.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

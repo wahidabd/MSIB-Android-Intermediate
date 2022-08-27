@@ -46,4 +46,5 @@
     <string name="maps_style">Maps Style</string>
     <string name="night">Night</string>
     <string name="silver">Silver</string>
+    <string name="share_my_location">Share my location</string>
 </resources>

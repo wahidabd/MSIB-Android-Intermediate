@@ -17,7 +17,7 @@ class PostPagingAdapter(private val context: Context) :
     ) {
 
     companion object {
-        private var differCallback = object : DiffUtil.ItemCallback<PostModel>() {
+        val differCallback = object : DiffUtil.ItemCallback<PostModel>() {
             override fun areItemsTheSame(oldItem: PostModel, newItem: PostModel): Boolean =
                 oldItem.id == newItem.id
 

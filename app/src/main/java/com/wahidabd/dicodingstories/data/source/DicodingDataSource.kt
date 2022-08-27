@@ -20,6 +20,8 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import timber.log.Timber
+import java.io.File
 import javax.inject.Inject
 
 class DicodingDataSource @Inject constructor(
@@ -50,15 +52,16 @@ class DicodingDataSource @Inject constructor(
         emit(res)
     }.flowOn(Dispatchers.IO)
 
-    fun postStory(request: PostRequest): Flow<Resource<GenericResponse>> = flow {
+    fun postStory(request: PostRequest, file: File): Flow<Resource<GenericResponse>> = flow {
         emit(Resource.loading(null))
 
         val desc = request.description.toRequestBody("text/plain".toMediaType())
-        val imageFile = request.file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("photo", request.file.name, imageFile)
+        val imageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("photo", file.name, imageFile)
 
-        val res = safeCall.enqueue(desc, imageMultipart, converter::converterGenericError, postService::postStory)
+        val res = safeCall.enqueue(desc, imageMultipart, request.lat, request.lon, converter::converterGenericError, postService::postStory)
         emit(res)
+        Timber.d("$res")
     }.flowOn(Dispatchers.IO)
 
 }

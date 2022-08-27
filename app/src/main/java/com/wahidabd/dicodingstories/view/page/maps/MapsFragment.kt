@@ -10,17 +10,24 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import com.wahidabd.dicodingstories.R
 import com.wahidabd.dicodingstories.databinding.FragmentMapsBinding
-import com.wahidabd.dicodingstories.utils.MapStyle
-import com.wahidabd.dicodingstories.utils.MapStyle.*
-import com.wahidabd.dicodingstories.utils.MapType
+import com.wahidabd.dicodingstories.core.MapStyle.*
+import com.wahidabd.dicodingstories.core.MapType
+import com.wahidabd.dicodingstories.utils.bitmapFromVector
+import com.wahidabd.dicodingstories.viewmodel.PostViewModel
 import com.wahidabd.dicodingstories.viewmodel.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MapsFragment : Fragment(), OnMapReadyCallback {
@@ -28,8 +35,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentMapsBinding? = null
     private val binding get() = _binding!!
 
+    private val viewModel: PostViewModel by viewModels()
     private val settingViewModel: ThemeViewModel by viewModels()
-
     private lateinit var map: GoogleMap
 
     override fun onCreateView(
@@ -60,12 +67,40 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
         getMyLocation()
         getMapsTheme()
+        observableViewModel()
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ){ isGranted ->
         if (isGranted) getMyLocation()
+    }
+
+    private fun observableViewModel(){
+        viewModel.getPosLocation().observe(viewLifecycleOwner){res ->
+            res.data?.listStory?.forEach { data ->
+                Timber.d("$data")
+                if (data.lat != null && data.lon != null){
+                    val latLng = LatLng(data.lat, data.lon)
+                    map.addMarker(
+                        MarkerOptions()
+                            .position(latLng)
+                            .title(data.name)
+                            .icon(bitmapFromVector(requireContext(), R.drawable.ic_marker))
+                    )
+
+                    map.animateCamera(
+                        CameraUpdateFactory.newLatLngZoom(latLng, 5F)
+                    )
+                }
+
+                map.setOnMarkerClickListener {
+                    val action = MapsFragmentDirections.actionMapsFragmentToDetailFragment(data)
+                    findNavController().navigate(action)
+                    true
+                }
+            }
+        }
     }
 
     private fun getMyLocation(){

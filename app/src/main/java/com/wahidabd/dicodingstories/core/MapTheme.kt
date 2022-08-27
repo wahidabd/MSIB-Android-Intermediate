@@ -1,4 +1,4 @@
-package com.wahidabd.dicodingstories.utils
+package com.wahidabd.dicodingstories.core
 
 enum class MapType {
     NORMAL,
