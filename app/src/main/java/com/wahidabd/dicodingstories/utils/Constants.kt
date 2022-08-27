@@ -15,4 +15,6 @@ object Constants {
     const val SPLASH_DURATION: Long = 1500
 
     const val STARTING_PAGE_INDEX = 1
+
+    var BASE_URL_MOCK: String? = null
 }

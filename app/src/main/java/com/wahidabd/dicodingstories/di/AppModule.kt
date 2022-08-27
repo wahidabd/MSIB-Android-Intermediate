@@ -11,6 +11,7 @@ import com.wahidabd.dicodingstories.data.network.UserService
 import com.wahidabd.dicodingstories.data.network.connection.JwtInterceptor
 import com.wahidabd.dicodingstories.data.repository.DicodingRepository
 import com.wahidabd.dicodingstories.data.source.DicodingDataSource
+import com.wahidabd.dicodingstories.utils.Constants.BASE_URL_MOCK
 import com.wahidabd.dicodingstories.utils.SettingPreference
 import com.wahidabd.dicodingstories.utils.lottie.LottieLoading
 import dagger.Module
@@ -68,7 +69,7 @@ object AppModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(BASE_URL)
+            .baseUrl(BASE_URL_MOCK ?: BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
