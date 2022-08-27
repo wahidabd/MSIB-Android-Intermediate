@@ -37,6 +37,9 @@
         <activity
             android:name=".view.MainActivity"
             android:exported="false"/>
+        <activity
+            android:name=".utils.HiltTestActivity"
+            android:exported="false"/>
 
         <meta-data
             android:name="preloaded_fonts"
