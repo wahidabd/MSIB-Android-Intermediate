@@ -68,7 +68,7 @@ class AuthViewModelTest {
         advanceUntilIdle()
 
         Assert.assertNotNull(actual)
-        Assert.assertTrue(actual.status == Status.ERROR)
+        Assert.assertEquals(data.value, actual)
     }
 
     @Test
@@ -101,7 +101,7 @@ class AuthViewModelTest {
         advanceUntilIdle()
 
         Assert.assertNotNull(actual)
-        Assert.assertTrue(actual.status == Status.ERROR)
+        Assert.assertEquals(data.value, actual)
     }
 
 }
