@@ -12,6 +12,7 @@ import com.wahidabd.dicodingstories.R
 import com.wahidabd.dicodingstories.databinding.ActivityMainBinding
 import com.wahidabd.dicodingstories.viewmodel.ThemeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -44,22 +45,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
+    override fun onSupportNavigateUp(): Boolean {
         val dest = navController.currentDestination
+        Timber.d("Nav Controller ${dest?.id} -> ${dest?.label}")
 
-        if (dest != null){
+        return if (dest != null){
             when(dest.label){
-                FRAGMENT_POST -> {
-                    super.onBackPressed()
-                }
-                else -> super.onBackPressed()
+                FRAGMENT_DETAIL -> navController.navigateUp()
+                else -> navController.navigateUp()
             }
-        }else{
-            super.onBackPressed()
-        }
+        }else navController.navigateUp()
     }
 
+
     companion object{
-        const val FRAGMENT_POST = "fragment_post_new"
+        const val FRAGMENT_DETAIL = "fragment_detail"
     }
 }

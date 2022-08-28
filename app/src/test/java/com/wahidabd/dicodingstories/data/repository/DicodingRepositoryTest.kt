@@ -14,6 +14,7 @@ import com.wahidabd.dicodingstories.utils.CoroutinesTestRule
 import com.wahidabd.dicodingstories.utils.DataDummy
 import com.wahidabd.dicodingstories.utils.ServiceDummy
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -129,6 +130,10 @@ class DicodingRepositoryTest {
         repoMock.getPostLocation().collect { result ->
             if (result.status == Status.ERROR) {
                 Assert.assertNotNull(result)
+
+                expectedResult.collect{
+                    Assert.assertEquals(it, result)
+                }
             }
         }
     }
