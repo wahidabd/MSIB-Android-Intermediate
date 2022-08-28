@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="@string/don_at_have_account"
-            android:textColor="@color/color_text"
+            android:textColor="@color/color_text_auth"
             android:textSize="11sp" />
 
         <Space
