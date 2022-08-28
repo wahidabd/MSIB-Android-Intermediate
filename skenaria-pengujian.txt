@@ -1,0 +1,157 @@
+**Unit Testing**
+DicodingRepository
+- Login success
+	Memanggil service
+	Membuat expectedResult
+	Membuat actualResult dengan memanggil service
+	Memastikan actualResult tidak null
+	Memastikan expectesResult sama dengan actualResult
+- Login error
+	Memanggil service
+	Membuat expectedResult
+	Membuat actualResult dengan memanggil service
+	Memastikan actualResult tidak null
+	Memastikan expectesResult sama dengan actualResult
+
+- Register success
+	Memanggil service
+	Membuat expectedResult
+	Membuat actualResult dengan memanggil service
+	Memastikan actualResult tidak null
+	Memastikan expectesResult sama dengan actualResult
+- Register error
+	Memanggil service
+	Membuat expectedResult
+	Membuat actualResult dengan memanggil service
+	Memastikan actualResult tidak null
+	Memastikan expectesResult sama dengan actualResult
+
+- Story with location success
+	Membuat expectedResult
+	Memanggil data dari repository
+	Mengecek data tidak error
+	Memastikan data dari repository tidak null
+	memastikan actualResult (data) dan expectedResult sama
+-Story with location error
+	Membuat expectedResult
+	Memanggil data dari repository
+	Mengecek data error
+	Memastikan data dari repository tidak null
+	memastikan actualResult (data) dan expectedResult sama
+
+-New story success
+	Memanggil service
+	Membuat expectedResult
+	Mengirim request ke service
+	Mendapatkan actualResult dari request
+	Memastikan data actualResult tidak null
+	Memastikan expectedResult dan actualResult bernilai sama
+-New story error
+	Memanggil service
+	Membuat expectedResult
+	membuat actualResult error
+	Memastikan data actualResult tidak null
+	Memastikan expectedResult dan actualResult bernilai sama
+
+PostMeditorRepository
+-Story with paging success
+	Memanggil data
+	Membuat expectedResult
+	Membuat actualResult
+	Memasukan actualResult kedalam differ
+	Memastikan data differ tidak null
+	Memastikan ukuran actualResult dan differ sama
+
+
+AuthViewModel
+-Login success
+	Membuat expectedResult
+	Mendapatkan actualResult dari request ke viewmodel
+	Memastikan actualResult tidak null
+	Memastikan expectedResult dan actualResult sama
+-Login error
+	Membuat expectedResult
+	Mendapatkan actualResult dari request ke viewmodel
+	Memastikan actualResult tidak null
+	Memastikan expectedResult dan actualResult sama
+
+-Register success
+	Membuat expectedResult
+	Mendapatkan actualResult dari request ke viewmodel
+	Memastikan actualResult tidak null
+	Memastikan expectedResult dan actualResult sama
+-Regsiter error
+	Membuat expectedResult
+	Mendapatkan actualResult dari request ke viewmodel
+	Memastikan actualResult tidak null
+	Memastikan expectedResult dan actualResult sama
+
+PostViewModel
+-Story with paging
+	Mendapatkan expectedResult dari data dummy
+	Membuat actualResult 
+	Memastikan actualRsult Tidak null
+	Memastikan ukuran actualResult dan differ sama
+
+-Story with location success
+	Membuat expectedResult dari data dummy
+	Mendapatkan actualResult dari memanggil viewmodel
+	Memastikan data actualResult tidak null
+	Memastikan expectedResult dan actualResult bernilai sama
+-Story with location error
+	Membuat expectedResult dari data dummy
+	Mendapatkan actualResult dari memanggil viewmodel
+	Memastikan data actualResult tidak null
+	Memastikan status actualResult error
+
+-New story success
+	Mendapatkan expectedResult dari data dummy
+	Membuat request
+	Mengirim request ke viewmodel
+	Membuat actualResult dari request viewmodel
+	Memastikan actualResult tidak null
+	Memastikan expectedResult dan actualResult sama
+-New story error
+	Mendapatkan expectedResult dari data dummy
+	Membuat request
+	Mengirim request ke viewmodel
+	Membuat actualResult dari request viewmodel
+	Memastikan actualResult tidak null
+	Memastikan actualResult error
+
+
+**Instrumental Testing**
+@MediumTest
+HomeFragment
+-Success
+	Membuka halaman HomeFragment
+	Membuat response dengan mockWebServer
+	Memastikan recyclerView tampil
+-Empty
+	Membuka halaman HomeFragment
+	Membuat response dengan mockWebServer
+	Menampilkan error
+-Error
+	Membuka halaman HomeFragment
+	Membuat response dengan mockWebServer
+	Menampilkan error
+
+@MediumTest
+MapsFragment
+-Success
+	Membuka halaman MapsFragment
+	Membuat response dengan mockWebServer
+	Menampilkan maps
+
+@LargeTest
+MainActivity
+	Menjalankan SplashActivity
+	Menjalankan MainActivity
+	Menampilkan list data story
+	Membuka detail data story pada index 0
+	Melakukan navigasi back
+	Membuka halaman maps
+	Membuka halaman upload story
+	Melakukan navigasi back
+	Membukan halaman home
+	Selesai
